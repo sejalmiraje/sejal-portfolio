@@ -540,7 +540,7 @@ function App() {
           </nav>
 
           <a
-            href="mailto:your-sejalmiraje08@gmail.com"
+            href="mailto:sejalmiraje08@gmail.com"
             className="nav-contact"
           >
             Let's connect <span>↗</span>
