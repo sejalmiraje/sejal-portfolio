@@ -1,0 +1,86 @@
+
+.intro-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  color: #f7f8ff;
+  background: #07090e;
+}
+
+.intro-splash-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.2;
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 75%);
+}
+
+.intro-lightning {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(75vw, 800px);
+  height: 2px;
+  transform-origin: center;
+  background: #79aaff;
+  box-shadow:
+    0 0 12px #3982ff,
+    0 0 40px #2875ff,
+    0 0 100px rgba(45, 112, 255, .6);
+}
+
+.intro-content {
+  text-align: center;
+  padding: 24px;
+}
+
+.intro-eyebrow {
+  color: #a8b5d0;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+}
+
+.intro-content h1 {
+  margin: 22px 0 12px;
+  font-size: clamp(64px, 15vw, 150px);
+  line-height: 0.9;
+  letter-spacing: -0.09em;
+  font-weight: 750;
+}
+
+.intro-content h1 span {
+  color: #76a5ff;
+}
+
+.intro-content p {
+  color: #a9b1c1;
+  font-size: clamp(12px, 2vw, 15px);
+  letter-spacing: 0.04em;
+}
+
+.intro-bottom {
+  position: absolute;
+  right: 5%;
+  bottom: 28px;
+  left: 5%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  color: #68748b;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-lightning {
+    box-shadow: 0 0 12px #3982ff;
+  }
+}

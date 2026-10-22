@@ -1,582 +1,480 @@
 
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import { motion } from "motion/react";
+import { useEffect, useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
+import {
+  ArrowDownRight,
+  ArrowRight,
+  ArrowUpRight,
+  Code2,
+  Globe,
+  Layers3,
+  Mail,
+  Menu,
+  Moon,
+  Sun,
+  X,
+  Zap,
+} from 'lucide-react';
 
-const pages = [
-  { name: "About", path: "/about" },
-  { name: "Skills", path: "/skills" },
-  { name: "Certificates", path: "/certificates" },
-  { name: "Internships", path: "/internships" },
-  { name: "Projects", path: "/projects" },
-  { name: "Websites", path: "/websites" },
-];
+import IntroSplash from './IntroSplash';
+import './App.css';
 
-function Home() {
-  return (
-    <main className="hero" id="home">
-      <div className="hero-glow" />
-
-      <motion.div
-        className="hero-content"
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="eyebrow">
-          <span className="status-dot" />
-          COMPUTER SCIENCE ENGINEERING
-        </div>
-
-        <p className="intro">Hello, I'm Sejal Miraje.</p>
-
-        <h1>
-          Turning curiosity
-          <br />
-          into <span>creation.</span>
-        </h1>
-
-        <p className="hero-description">
-          Exploring the intersection of technology, thoughtful design,
-          and meaningful digital experiences.
-        </p>
-
-        <div className="hero-actions">
-          <Link to="/projects" className="button button-primary">
-            Explore my work <span>↗</span>
-          </Link>
-
-          <Link to="/about" className="button button-secondary">
-            More about me <span>↗</span>
-          </Link>
-        </div>
-
-        <div className="focus-area">
-          <span>MY FOCUS</span>
-          <div>
-            <p>Software Development</p>
-            <i />
-            <p>Web Technologies</p>
-            <i />
-            <p>Continuous Learning</p>
-          </div>
-        </div>
-      </motion.div>
-
-      <div className="hero-index">PORTFOLIO — 2026</div>
-      <div className="hero-orbit orbit-one" />
-      <div className="hero-orbit orbit-two" />
-    </main>
-  );
-}
-
-
-function AboutPage() {
-  const values = [
-    {
-      number: "01",
-      title: "Learn with intention",
-      description:
-        "Build a strong foundation in computer science and understand the reasoning behind the code, not just the syntax.",
-    },
-    {
-      number: "02",
-      title: "Build through practice",
-      description:
-        "Turn concepts into practical projects, experiment with new technologies, and learn from the process.",
-    },
-    {
-      number: "03",
-      title: "Grow with consistency",
-      description:
-        "Keep improving through deliberate practice, honest reflection, and a willingness to tackle difficult problems.",
-    },
-  ];
-
-  return (
-    <main className="about-page">
-      <motion.section
-        className="about-intro"
-        initial={{ opacity: 0, y: 22 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <div className="eyebrow">
-          <span className="status-dot" />
-          A LITTLE ABOUT ME
-        </div>
-
-        <div className="about-heading">
-          <div>
-            <p className="about-kicker">The person behind the code</p>
-            <h1>
-              Curious by nature.
-              <br />
-              <span>Driven to create.</span>
-            </h1>
-          </div>
-
-          <div className="about-number">
-            <span>01</span>
-            <div />
-            <span>ABOUT</span>
-          </div>
-        </div>
-
-        <div className="about-opening">
-          <p className="about-lead">
-            I'm Sejal, a Computer Science Engineering student with
-            an interest in software development and creating useful
-            digital experiences.
-          </p>
-
-          <p className="about-copy">
-            I'm working toward becoming a capable software engineer
-            by strengthening my fundamentals, exploring technologies,
-            and turning what I learn into projects. For me, progress
-            means understanding more deeply, building more confidently,
-            and improving one step at a time.
-          </p>
-        </div>
-      </motion.section>
-
-      <motion.section
-        className="journey-panel"
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="journey-label">
-          <span>01 / THE JOURNEY</span>
-          <span>Always becoming</span>
-        </div>
-
-        <div className="journey-content">
-          <div className="journey-mark">SM<span>.</span></div>
-
-          <div>
-            <h2>
-              From learning the fundamentals
-              <br />
-              to building with purpose.
-            </h2>
-            <p>
-              My journey in computing has grown from learning
-              technical foundations to exploring software development
-              through coursework and practical projects. I'm now
-              focused on connecting what I learn in the classroom
-              with the skills needed to build real applications.
-            </p>
-          </div>
-        </div>
-      </motion.section>
-
-      <section className="values-section">
-        <div className="section-heading">
-          <div>
-            <p className="about-kicker">My approach</p>
-            <h2>What moves me forward.</h2>
-          </div>
-          <span className="section-index">02 — 04</span>
-        </div>
-
-        <div className="values-grid">
-          {values.map((value, index) => (
-            <motion.article
-              key={value.number}
-              className="value-card"
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.12 }}
-            >
-              <span className="value-number">{value.number}</span>
-              <h3>{value.title}</h3>
-              <p>{value.description}</p>
-              <span className="value-arrow">↗</span>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
-      <section className="exploring-panel">
-        <div>
-          <p className="about-kicker">Right now</p>
-          <h2>Curiosity, in progress.</h2>
-          <p>
-            I'm exploring the technologies and practices that will
-            help me become a stronger developer.
-          </p>
-        </div>
-
-        <div className="exploring-tags">
-          <span>Software Development</span>
-          <span>Web Technologies</span>
-          <span>Problem Solving</span>
-          <span>Building Projects</span>
-          <span>Continuous Learning</span>
-        </div>
-      </section>
-
-      <footer className="about-footer">
-        <span>THOUGHTFULLY LEARNING. PURPOSEFULLY BUILDING.</span>
-        <Link to="/projects">Explore my projects ↗</Link>
-      </footer>
-    </main>
-  );
-}
-
-
-
-function PlaceholderPage({ title }) {
-  return (
-    <main className="page-placeholder">
-      <section className="placeholder-section">
-        <div className="eyebrow">
-          <span className="status-dot" />
-          {title}
-        </div>
-        <h1>Coming soon</h1>
-        <p>This section is currently being built.</p>
-      </section>
-    </main>
-  );
-}
-
-
-function SkillsPage() {
-  const skillGroups = [
-    {
-      number: "01",
-      title: "Programming",
-      subtitle: "LANGUAGES & FUNDAMENTALS",
-      skills: ["Java", "Python", "JavaScript", "Data Structures"],
-      note: "Building stronger programming fundamentals through practice.",
-    },
-    {
-      number: "02",
-      title: "Web development",
-      subtitle: "FRONTEND TECHNOLOGIES",
-      skills: ["HTML", "CSS", "React", "Tailwind CSS"],
-      note: "Learning to create responsive, polished web experiences.",
-    },
-    {
-      number: "03",
-      title: "Tools & workflow",
-      subtitle: "DEVELOPMENT ENVIRONMENT",
-      skills: ["Git", "GitHub", "VS Code", "npm"],
-      note: "Practising version control and modern development workflows.",
-    },
-    {
-      number: "04",
-      title: "Backend & data",
-      subtitle: "SERVER-SIDE DEVELOPMENT",
-      skills: ["Node.js", "Express", "SQL", "MongoDB"],
-      note: "Developing my understanding of APIs, servers, and databases.",
-    },
-  ];
-
-  return (
-    <main className="skills-page">
-      <motion.section
-        className="skills-intro"
-        initial={{ opacity: 0, y: 22 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-      >
-        <div className="eyebrow">
-          <span className="status-dot" />
-          SKILLS & TECHNOLOGIES
-        </div>
-
-        <div className="skills-heading">
-          <p className="about-kicker">My technical toolkit</p>
-          <h1>
-            Knowledge in progress.
-            <br />
-            <span>Skills in the making.</span>
-          </h1>
-          <p className="skills-description">
-            A growing collection of technologies and fundamentals
-            I'm learning, practising, and applying through projects.
-          </p>
-        </div>
-
-        <div className="skills-meta">
-          <span>FOUNDATIONS</span>
-          <span className="skills-meta-line" />
-          <span>EXPERIMENTATION</span>
-          <span className="skills-meta-line" />
-          <span>CONTINUOUS GROWTH</span>
-        </div>
-      </motion.section>
-
-      <section className="skill-groups">
-        {skillGroups.map((group, index) => (
-          <motion.article
-            key={group.number}
-            className="skill-group"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.45, delay: index * 0.08 }}
-          >
-            <div className="skill-group-top">
-              <span className="skill-group-number">{group.number}</span>
-              <span className="skill-group-subtitle">{group.subtitle}</span>
-            </div>
-
-            <h2>{group.title}</h2>
-
-            <div className="skill-pills">
-              {group.skills.map((skill) => (
-                <span key={skill}>{skill}</span>
-              ))}
-            </div>
-
-            <p className="skill-group-note">{group.note}</p>
-          </motion.article>
-        ))}
-      </section>
-
-      <section className="skills-note-panel">
-        <span className="skills-note-symbol">✳</span>
-        <div>
-          <p className="about-kicker">A note on my approach</p>
-          <h2>Depth over labels.</h2>
-          <p>
-            I'm focused on understanding concepts, practising consistently,
-            and using technology to build things that work. This page will
-            evolve as my knowledge and hands-on experience grow.
-          </p>
-        </div>
-      </section>
-
-      <footer className="about-footer">
-        <span>LEARN. PRACTISE. BUILD. REPEAT.</span>
-        <Link to="/projects">Projects in progress ↗</Link>
-      </footer>
-    </main>
-  );
-}
-
-
-function CertificatesPage() {
-  
-const certificates = [
-  
-{
-  title: "Water and Carbon Footprint Calculator",
-  issuer: "Journal of Emerging Technologies and Innovative Research (JETIR)",
-  date: "March 13, 2025",
-  category: "Certificate of Publication",
-  file: "/certificates/jetir-publication.pdf",
-  publication: "https://www.jetir.org/view?paper=JETIR2503221",
-},
-
+const projects = [
   {
-    title: "Climate Change Induced Disasters",
-    issuer: "Indian Institute of Remote Sensing (IIRS), ISRO",
-    date: "October 8, 2026",
-    category: "Online Course",
-    file: "/certificates/iirs-climate-change-disasters.pdf",
+    number: '01',
+    category: 'COMMUNITY · WEB DEVELOPMENT',
+    name: 'GDGoC TKIET',
+    description:
+      'A chapter website connecting student developers, events, and community initiatives.',
+    tags: ['React', 'Vite', 'Motion', 'Vercel'],
+    link: 'https://gdgoc-tkiet-website.vercel.app/',
+    github: 'https://github.com/sejalmiraje/gdgoc-tkiet-website',
+    visual: 'project-community',
+    status: 'LIVE PROJECT',
   },
   {
-    title: "Advanced Software Engineering Job Simulation",
-    issuer: "Forage",
-    date: "June 14, 2026",
-    category: "Certificate of Completion",
-    file: "/certificates/forage-software-engineering.pdf",
+    number: '02',
+    category: 'E-COMMERCE · WEB DESIGN',
+    name: 'VELVET',
+    description:
+      'A separate storefront project exploring refined branding and a premium shopping experience.',
+    tags: ['React', 'UI Design', 'Web Development'],
+    link: 'https://velvet-storefront.vercel.app/',
+    visual: 'project-velvet',
+    status: 'IN DEVELOPMENT',
   },
   {
-    title: "Drowsiness Detection Using OpenCV",
-    issuer: "NoviTech R&D Private Limited",
-    date: "Date not specified",
-    category: "Bootcamp Completion",
-    file: "/certificates/novitech-drowsiness-detection.pdf",
+    number: '03',
+    category: 'EXPERIMENTS · PROBLEM SOLVING',
+    name: 'Beyond the interface',
+    description:
+      'Exploring practical technology through student projects, intelligent systems, and creative coding.',
+    tags: ['JavaScript', 'Python', 'Learning by Building'],
+    visual: 'project-lab',
+    status: 'SELECTED WORK',
   },
 ];
 
-    
+const capabilities = [
+  {
+    number: '01',
+    icon: Code2,
+    title: 'Web development',
+    text: 'Responsive interfaces, React applications, and clean component-based experiences.',
+  },
+  {
+    number: '02',
+    icon: Layers3,
+    title: 'UI & interaction',
+    text: 'Thoughtful layouts, strong visual hierarchy, and motion with a purpose.',
+  },
+  {
+    number: '03',
+    icon: Globe,
+    title: 'From code to live',
+    text: 'Git, GitHub, deployment workflows, and turning an idea into a working website.',
+  },
+];
+
+function Reveal({ children, className = '', delay = 0 }) {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <main className="certificates-page">
-      <section className="certificates-heading">
-        <p className="section-eyebrow">THE LEARNING ARCHIVE</p>
-        <h1>
-          Certificates & Achievements
-          <br />
-        </h1>
-        <p className="certificates-intro">
-          Every milestone represents a step forward in my
-          journey of learning, exploration, and growth in technology.
-        </p>
-      </section>
-
-      <section className="certificates-grid">
-        {certificates.map((certificate, index) => (
-          <article className="certificate-card" key={certificate.title}>
-            
-
-            <div className="certificate-details">
-              <div>
-                <p className="certificate-category">{certificate.category}</p>
-                <h3>{certificate.title}</h3>
-                <p className="certificate-meta">{certificate.issuer}</p>
-              </div>
-
-              <a
-  className="certificate-link"
-  href={certificate.file}
-  target="_blank"
-  rel="noreferrer"
->
-  View certificate <span aria-hidden="true">↗</span>
-</a>
-              <span className="certificate-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-            </div>
-          </article>
-        ))}
-      </section>
-
-      <p className="certificates-note">
-        Your real certificates will replace these design placeholders.
-      </p>
-    </main>
+    <motion.div
+      className={className}
+      initial={reduceMotion ? false : { opacity: 0, y: 35 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: reduceMotion ? 0 : 0.75,
+        delay: reduceMotion ? 0 : delay,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-
-function InternshipsPage() {
-  const internships = [
-    {
-      company: "Cognifyz Technologies",
-      role: "Full Stack Development Intern",
-      status: "Ongoing",
-      statusClass: "ongoing",
-      number: "01",
-    },
-    {
-      company: "Multispark Technology",
-      role: "Web Development",
-      status: "Completed",
-      statusClass: "completed",
-      number: "02",
-    },
-    {
-      company: "iStudio",
-      role: "AWS Internship",
-      status: "Selected · Not Started",
-      statusClass: "selected",
-      number: "03",
-    },
-  ];
-
+function ProjectCard({ project, index }) {
   return (
-    <main className="internships-page">
-      <section className="internships-heading">
-        <p className="section-eyebrow">PROFESSIONAL EXPERIENCE</p>
-        <h1>Internships<span>.</span></h1>
-        <p>
-          My internship journey, learning opportunities,
-          and professional experiences.
-        </p>
-      </section>
+    <Reveal delay={index * 0.08} className="project-reveal">
+      <article className="project-card">
+        <div className={`project-visual ${project.visual}`}>
+          <div className="project-visual-top">
+            <span>{project.status}</span>
+            <span>{project.number} / 03</span>
+          </div>
 
-      <section className="internships-grid">
-        {internships.map((internship) => (
-          <article
-            className="internship-card"
-            key={internship.number}
-          >
-            <div className="internship-card-top">
-              <span className="internship-number">
-                {internship.number}
-              </span>
-
-              <span
-                className={`internship-status ${internship.statusClass}`}
-              >
-                {internship.status}
-              </span>
+          {index === 0 && (
+            <div className="visual-community">
+              <span className="visual-overline">BUILD TOGETHER.</span>
+              <strong>Google<br />Developer<br />Groups.</strong>
+              <div className="visual-orbit orbit-one" />
+              <div className="visual-orbit orbit-two" />
+              <span className="visual-dot dot-blue" />
+              <span className="visual-dot dot-red" />
+              <span className="visual-dot dot-yellow" />
+              <span className="visual-dot dot-green" />
             </div>
+          )}
 
-            <div className="internship-card-content">
-              <p className="internship-label">ORGANIZATION</p>
-              <h2>{internship.company}</h2>
-              <p className="internship-role">{internship.role}</p>
+          {index === 1 && (
+            <div className="visual-velvet">
+              <span>THE ART OF LESS.</span>
+              <strong>VELVET</strong>
+              <div className="velvet-line" />
+              <small>FORM · FEELING · FUNCTION</small>
             </div>
+          )}
 
-            <div className="internship-card-footer">
-              <span>Internship Experience</span>
-              <span aria-hidden="true">↗</span>
+          {index === 2 && (
+            <div className="visual-lab">
+              <Zap size={42} strokeWidth={1.2} />
+              <strong>IDEAS → REALITY</strong>
+              <span>AN ONGOING PRACTICE</span>
+              <div className="lab-grid" />
             </div>
-          </article>
-        ))}
-      </section>
-    </main>
+          )}
+        </div>
+
+        <div className="project-details">
+          <span className="project-category">{project.category}</span>
+          <h3>{project.name}</h3>
+          <p>{project.description}</p>
+
+          <div className="project-tags">
+            {project.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+
+          {project.link ? (
+            <div className="project-actions">
+              <a href={project.link} target="_blank" rel="noreferrer">
+                View live site <ArrowUpRight size={16} />
+              </a>
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`View ${project.name} source on GitHub`}
+                >
+                </a>
+              )}
+            </div>
+          ) : (
+            <span className="project-note">
+              More details coming as the project develops.
+            </span>
+          )}
+        </div>
+      </article>
+    </Reveal>
   );
 }
 
+export default function App() {
+  const [dark, setDark] = useState(() => {
+    const saved = localStorage.getItem('sejal-theme');
+    return saved ? saved === 'dark' : true;
+  });
 
+  const [menuOpen, setMenuOpen] = useState(false);
 
-function App() {
+  useEffect(() => {
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    document.body.dataset.theme = dark ? 'dark' : 'light';
+    localStorage.setItem('sejal-theme', dark ? 'dark' : 'light');
+  }, [dark]);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (
-    <BrowserRouter>
-      <div className="site-shell">
-        <header className="navbar">
-          <Link to="/" className="brand" aria-label="Home">
-            SM<span>.</span>
-          </Link>
+    <>
+      <IntroSplash />
 
-          <nav className="nav-links">
-            {pages.map((page) => (
-              <Link key={page.path} to={page.path}>
-                {page.name}
-              </Link>
+      <div className="portfolio" id="top">
+        <header className="site-header">
+          <a href="#top" className="brand" onClick={closeMenu}>
+            <span className="brand-mark">S<span>.</span></span>
+            <span>SEJAL MIR AJE</span>
+          </a>
+
+          <nav className={`nav-links ${menuOpen ? 'nav-open' : ''}`}>
+            {[
+              ['Work', '#work'],
+              ['Approach', '#approach'],
+              ['About', '#about'],
+              ['Contact', '#contact'],
+            ].map(([label, href]) => (
+              <a key={label} href={href} onClick={closeMenu}>
+                {label}
+              </a>
             ))}
           </nav>
 
-          <a
-            href="mailto:sejalmiraje08@gmail.com"
-            className="nav-contact"
-          >
-            Let's connect <span>↗</span>
-          </a>
+          <div className="header-actions">
+            <button
+              className="theme-toggle"
+              onClick={() => setDark((value) => !value)}
+              aria-label={`Switch to ${dark ? 'light' : 'dark'} theme`}
+              title={`Switch to ${dark ? 'light' : 'dark'} theme`}
+            >
+              {dark ? <Sun size={17} /> : <Moon size={17} />}
+            </button>
+
+            <a href="#contact" className="header-cta">
+              Let's talk <ArrowUpRight size={15} />
+            </a>
+
+            <button
+              className="menu-toggle"
+              onClick={() => setMenuOpen((value) => !value)}
+              aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}
+              aria-expanded={menuOpen}
+            >
+              {menuOpen ? <X /> : <Menu />}
+            </button>
+          </div>
         </header>
 
-        <Routes>
-          <Route path="/" element={<Home />} />
-          
-          
-{pages.map((page) => (
-  <Route
-    key={page.path}
-    path={page.path}
-    element={
-      page.path === "/about" ? (
-  <AboutPage />
-) : page.path === "/skills" ? (
-  <SkillsPage />
-) : page.path === "/certificates" ? (
-  <CertificatesPage />
-) : page.path === "/internships" ? (
-  <InternshipsPage />
-) : (
-  <PlaceholderPage title={page.name} />
-)
+        <main>
+          <section className="hero section-shell">
+            <div className="hero-grid" />
 
-    }
-  />
-))}
+            <div className="hero-content">
+              <Reveal>
+                <div className="availability">
+                  <span className="availability-dot" />
+                  <span>CSE STUDENT · DEVELOPER IN PROGRESS</span>
+                </div>
+              </Reveal>
 
+              <Reveal delay={0.08}>
+                <h1>
+                  I turn ideas
+                  <br />
+                  into <span className="hero-accent">digital</span>
+                  <br />
+                  experiences<span className="hero-period">.</span>
+                </h1>
+              </Reveal>
 
-        </Routes>
+              <Reveal delay={0.16}>
+                <p className="hero-description">
+                  I'm Sejal — a computer science student building thoughtful
+                  websites, exploring technology, and learning by shipping
+                  real projects.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.23}>
+                <div className="hero-actions">
+                  <a className="button-primary" href="#work">
+                    Explore my work <ArrowDownRight size={17} />
+                  </a>
+                  <a className="button-secondary" href="#contact">
+                    Have a project? <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </Reveal>
+
+              <div className="hero-meta">
+                <span>BASED IN INDIA</span>
+                <span>DESIGN-MINDED. CODE-DRIVEN.</span>
+              </div>
+            </div>
+
+            <div className="hero-art" aria-hidden="true">
+              <div className="electric-ring ring-outer" />
+              <div className="electric-ring ring-middle" />
+              <div className="electric-ring ring-inner" />
+              <div className="electric-core">
+                <Zap size={76} strokeWidth={1.05} />
+              </div>
+              <div className="electric-ray ray-one" />
+              <div className="electric-ray ray-two" />
+              <div className="electric-ray ray-three" />
+              <span className="art-caption">ENERGY INTO EXECUTION</span>
+              <span className="art-index">SM—026</span>
+            </div>
+
+            <a className="scroll-cue" href="#work">
+              <span className="scroll-line" />
+              SCROLL TO EXPLORE
+            </a>
+          </section>
+
+          <section className="marquee-strip" aria-label="Areas of interest">
+            <div className="marquee-track">
+              {Array.from({ length: 2 }).map((_, index) => (
+                <div className="marquee-group" key={index}>
+                  {['DESIGN', 'DEVELOPMENT', 'EXPERIMENTATION', 'DEPLOYMENT'].map(
+                    (word) => (
+                      <span key={word}>
+                        {word} <i>✳</i>
+                      </span>
+                    )
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section className="work-section section-shell" id="work">
+            <Reveal>
+              <div className="section-heading">
+                <div>
+                  <span className="eyebrow">01 / SELECTED WORK</span>
+                  <h2>Made with <span>intention.</span></h2>
+                </div>
+                <p>
+                  A growing collection of ideas turned into interfaces,
+                  experiences, and working products.
+                </p>
+              </div>
+            </Reveal>
+
+            <div className="projects-grid">
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.number}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </div>
+          </section>
+
+          <section className="approach-section" id="approach">
+            <div className="section-shell">
+              <Reveal>
+                <div className="section-heading">
+                  <div>
+                    <span className="eyebrow">02 / WHAT I BRING</span>
+                    <h2>Curiosity meets <span>craft.</span></h2>
+                  </div>
+                  <p>
+                    Not just how it looks. How it works, how it feels, and
+                    what it makes possible.
+                  </p>
+                </div>
+              </Reveal>
+
+              <div className="capabilities-list">
+                {capabilities.map((item, index) => {
+                  const Icon = item.icon;
+
+                  return (
+                    <Reveal key={item.number} delay={index * 0.07}>
+                      <article className="capability">
+                        <span className="capability-number">{item.number}</span>
+                        <div className="capability-icon">
+                          <Icon size={23} strokeWidth={1.5} />
+                        </div>
+                        <div className="capability-copy">
+                          <h3>{item.title}</h3>
+                          <p>{item.text}</p>
+                        </div>
+                        <ArrowUpRight className="capability-arrow" size={21} />
+                      </article>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="about-section section-shell" id="about">
+            <Reveal>
+              <div className="about-layout">
+                <div className="about-label">
+                  <span className="eyebrow">03 / A LITTLE ABOUT ME</span>
+                  <div className="about-monogram">S<span>.</span></div>
+                </div>
+
+                <div className="about-copy">
+                  <h2>
+                    Still learning.
+                    <br />
+                    Always <span>building.</span>
+                  </h2>
+                  <p>
+                    I'm pursuing Computer Science at TKIET, developing my
+                    skills in frontend engineering, and contributing to
+                    developer communities. I care about details, meaningful
+                    interactions, and the process of making an idea real.
+                  </p>
+                  <a
+                    className="text-link"
+                    href="https://github.com/sejalmiraje"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Follow my journey on GitHub <ArrowUpRight size={16} />
+                  </a>
+                </div>
+              </div>
+            </Reveal>
+          </section>
+
+          <section className="contact-section" id="contact">
+            <div className="contact-glow" />
+            <div className="section-shell contact-inner">
+              <Reveal>
+                <span className="eyebrow">04 / YOUR IDEA, NEXT</span>
+                <h2>
+                  Have something
+                  <br />
+                  <span>in mind?</span>
+                </h2>
+                <p>
+                  Let's talk about your website, an idea you're exploring,
+                  or something worth building together.
+                </p>
+
+                <a
+                  className="contact-button"
+                  href="mailto:sejalmiraje08@gmail.com?subject=Let's%20build%20something"
+                >
+                  Start a conversation <ArrowUpRight size={18} />
+                </a>
+              </Reveal>
+            </div>
+          </section>
+        </main>
+
+        <footer className="site-footer section-shell">
+          <a href="#top" className="footer-brand">
+            SEJAL<span>.</span>
+          </a>
+
+          <p>Built with curiosity and a lot of iteration.</p>
+
+          <div className="footer-links">
+            <a
+              href="https://github.com/sejalmiraje"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+          >
+            </a>
+            <a
+              href="mailto:sejalmiraje08@gmail.com"
+              aria-label="Email Sejal"
+            >
+              <Mail size={18} />
+            </a>
+            <a href="#top" aria-label="Back to top">
+              <ArrowRight size={18} className="footer-up-arrow" />
+            </a>
+          </div>
+
+          <span className="copyright">© 2026 SEJAL MIR AJE</span>
+        </footer>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
-
-export default App;
