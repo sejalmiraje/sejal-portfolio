@@ -39,7 +39,7 @@ const projects = [
     description:
       'A separate storefront project exploring refined branding and a premium shopping experience.',
     tags: ['React', 'UI Design', 'Web Development'],
-    link: 'https://velvet-storefront.vercel.app/',
+    link: 'https://velvet-eight-mauve.vercel.app/',
     visual: 'project-velvet',
     status: 'IN DEVELOPMENT',
   },
